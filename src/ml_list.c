@@ -71,11 +71,23 @@ void ml_list_print(ml_list list)
     printf("\n");
 }
 
+ml_iterator_list ml_list_begin(ml_list list)
+{
+    ml_iterator_list begin = (ml_iterator_list) list->next;
+    return begin;
+}
+
+ml_iterator_list ml_list_end(ml_list list)
+{
+    ml_iterator_list end = (ml_iterator_list) list;
+    return end;
+}
+
 static ml_list new_element(const void *obj, size_t size)
 {
     ml_list list = (ml_list) malloc(sizeof(struct _ml_list));
     list->object = malloc(size);
-    memcpy(list->object, obj, size);
+    memmove(list->object, obj, size);
     return list;
 }
 
