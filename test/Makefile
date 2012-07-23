@@ -3,8 +3,8 @@ INCLUDE = ../src/
 
 all: test test_iterator
 
-test: ml_list.o test.c
-	$(CC) -I$(INCLUDE) ml_list.o test.c -o test
+test: ml_list.o ml_iterator_list.o test.c
+	$(CC) -I$(INCLUDE) ml_list.o ml_iterator_list.o test.c -o test
 
 test_iterator: ml_list.o ml_iterator_list.o
 	$(CC) -I$(INCLUDE) ml_list.o ml_iterator_list.o test_iterator.c -o test_iterator
