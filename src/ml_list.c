@@ -6,6 +6,8 @@
 static ml_list new_element(const void *, size_t);
 static void delete_element(ml_list);
 
+/* Constructor and destructor */
+
 ml_list ml_list_new(size_t size)
 {
     size_t *obj = &size;
@@ -16,6 +18,53 @@ ml_list ml_list_new(size_t size)
 
     return sentinel;
 }
+
+void ml_list_delete(ml_list *list)
+{
+    ml_list_clear(*list);
+    delete_element(*list);
+}
+
+
+
+/* Iterators */
+
+ml_iterator_list ml_list_begin(ml_list list)
+{
+    ml_iterator_list begin = (ml_iterator_list) list->next;
+    return begin;
+}
+
+ml_iterator_list ml_list_end(ml_list list)
+{
+    ml_iterator_list end = (ml_iterator_list) list;
+    return end;
+}
+
+
+
+/* Capacity */
+
+bool ml_list_empty(ml_list list)
+{
+    return list->next != list ? false : true;
+}
+
+size_t ml_list_size(ml_list list)
+{
+    size_t size = 0;
+    ml_iterator_list it = NULL;
+    
+    for (it = ml_list_begin(list); it != ml_list_end(list); 
+	 ml_iterator_list_next(&it))
+	++size;
+
+    return size;
+}
+
+
+
+/* Modifiers */
 
 void ml_list_push_back(ml_list list, const void *obj)
 {
@@ -61,27 +110,15 @@ void ml_list_pop_front(ml_list list)
     delete_element(first);
 }
 
-void ml_list_print(ml_list list)
+void ml_list_clear(ml_list list)
 {
-    ml_list p;
-    for (p = list->next; p != list; p = p->next) {
-	int *d = (int *) p->object;
-	printf("%d ", *d);
-    }
-    printf("\n");
+    while (!ml_list_empty(list))
+	ml_list_pop_back(list);
 }
 
-ml_iterator_list ml_list_begin(ml_list list)
-{
-    ml_iterator_list begin = (ml_iterator_list) list->next;
-    return begin;
-}
 
-ml_iterator_list ml_list_end(ml_list list)
-{
-    ml_iterator_list end = (ml_iterator_list) list;
-    return end;
-}
+
+/* private functions*/
 
 static ml_list new_element(const void *obj, size_t size)
 {
