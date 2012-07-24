@@ -6,7 +6,7 @@ all: test test_iterator
 test: ml_list.o ml_iterator_list.o test.c
 	$(CC) -I$(INCLUDE) ml_list.o ml_iterator_list.o test.c -o test
 
-test_iterator: ml_list.o ml_iterator_list.o
+test_iterator: ml_list.o ml_iterator_list.o test_iterator.c
 	$(CC) -I$(INCLUDE) ml_list.o ml_iterator_list.o test_iterator.c -o test_iterator
 
 ml_list.o: ../src/ml_list.h ../src/ml_list.c ../src/ml_iterator_list.h ../src/ml_iterator_list.c

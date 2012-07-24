@@ -12,13 +12,15 @@ int main()
 	ml_list_push_back(list, &i);
     }
 
-    for (it = ml_list_begin(list); it != ml_list_end(list); 
-	 ml_iterator_list_next(&it)) {
+    for (it = ml_list_rbegin(list); it != ml_list_rend(list); 
+	 ml_iterator_list_rnext(&it)) {
 	
 	int *d = ml_iterator_list_get(it);
 	printf("%d ", *d);
     }
     printf("\n");
+
+    ml_list_delete(&list);
 
     return 0;
 }

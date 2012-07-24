@@ -31,17 +31,23 @@ void ml_list_delete(ml_list *list)
 
 ml_iterator_list ml_list_begin(ml_list list)
 {
-    ml_iterator_list begin = (ml_iterator_list) list->next;
-    return begin;
+    return (ml_iterator_list) list->next;
 }
 
 ml_iterator_list ml_list_end(ml_list list)
 {
-    ml_iterator_list end = (ml_iterator_list) list;
-    return end;
+    return (ml_iterator_list) list;
 }
 
+ml_iterator_list ml_list_rbegin(ml_list list)
+{
+    return (ml_iterator_list) list->prev;
+}
 
+ml_iterator_list ml_list_rend(ml_list list)
+{
+    return (ml_iterator_list) list;
+}
 
 /* Capacity */
 

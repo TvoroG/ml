@@ -13,6 +13,11 @@ void ml_iterator_list_next(ml_iterator_list *it)
     *it = (*it)->next;
 }
 
+void ml_iterator_list_rnext(ml_iterator_list *it)
+{
+    *it = (*it)->prev;
+}
+
 void *ml_iterator_list_get(ml_iterator_list it)
 {
     return it->object;

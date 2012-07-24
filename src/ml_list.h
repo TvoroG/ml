@@ -20,6 +20,8 @@ void ml_list_delete(ml_list *);
 /* Iterators: */
 ml_iterator_list ml_list_begin(ml_list);
 ml_iterator_list ml_list_end(ml_list);
+ml_iterator_list ml_list_rbegin(ml_list);
+ml_iterator_list ml_list_rend(ml_list);
 
 /* Capacity: */
 bool ml_list_empty(ml_list);
