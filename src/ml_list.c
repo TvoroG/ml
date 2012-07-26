@@ -7,7 +7,6 @@ static ml_list new_element(const void *, size_t);
 static void delete_element(ml_list);
 
 /* Constructor and destructor */
-
 ml_list ml_list_new(size_t size)
 {
     size_t *obj = &size;
@@ -26,9 +25,7 @@ void ml_list_delete(ml_list *list)
 }
 
 
-
 /* Iterators */
-
 ml_iterator_list ml_list_begin(ml_list list)
 {
     return (ml_iterator_list) list->next;
@@ -49,8 +46,8 @@ ml_iterator_list ml_list_rend(ml_list list)
     return (ml_iterator_list) list;
 }
 
-/* Capacity */
 
+/* Capacity */
 bool ml_list_empty(ml_list list)
 {
     return list->next != list ? false : true;
@@ -68,10 +65,18 @@ size_t ml_list_size(ml_list list)
     return size;
 }
 
+void *ml_list_front(ml_list list)
+{
+    return list->next != list ? list->next->object : NULL;
+}
+
+void *ml_list_back(ml_list list)
+{
+    return list->prev != list ? list->prev->object : NULL;
+}
 
 
 /* Modifiers */
-
 void ml_list_push_back(ml_list list, const void *obj)
 {
     size_t *size = (size_t *) list->object;
@@ -123,9 +128,7 @@ void ml_list_clear(ml_list list)
 }
 
 
-
-/* private functions*/
-
+/* private functions */
 static ml_list new_element(const void *obj, size_t size)
 {
     ml_list list = (ml_list) malloc(sizeof(struct _ml_list));

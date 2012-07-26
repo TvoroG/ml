@@ -27,6 +27,10 @@ ml_iterator_list ml_list_rend(ml_list);
 bool ml_list_empty(ml_list);
 size_t ml_list_size(ml_list);
 
+/* Element access: */
+void *ml_list_front(ml_list);
+void *ml_list_back(ml_list);
+
 /* Modifiers: */
 void ml_list_push_back(ml_list, const void *);
 void ml_list_push_front(ml_list, const void *);
