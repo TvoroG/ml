@@ -10,15 +10,11 @@ int main()
     for (i = 0; i < 100; i++) {
 	ml_list_push_front(list, &i);
     }
-    
-    if (ml_list_empty(list)) {
-	printf("empty\n");
-    } else {
-	printf("size: %d\n", (int) ml_list_size(list));
-	ml_list_clear(list);
-	if (ml_list_empty(list))
-	    printf("size: %d\n", (int) ml_list_size(list));
-    }
+
+    int *d = (int *) ml_list_back(list);
+    *d = 100;
+    d = (int *) ml_list_back(list);
+    printf("%d\n", *d);
     
     ml_list_delete(&list);
 
